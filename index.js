@@ -9,14 +9,13 @@ io.on("connection", (socket) => {
   // add user when they are online
   socket.on("addNewUser", (userId) => {
     const isAlreadyOnline = onlineUsers.some((user) => user.userId === userId);
-    if (!isAlreadyOnline) {
-      onlineUsers.push({
-        userId,
-        socketId: socket.id,
-      });
-    }
+    onlineUsers.push({
+      userId,
+      socketId: socket.id,
+      lastSeen: isAlreadyOnline ? "online" : new Date(),
+    });
     io.emit("getOnlineUsers", onlineUsers);
-    console.log("onlineUsers:", onlineUsers);
+    console.log("last onlineUsers:");
   });
 
   // add message
