@@ -15,7 +15,6 @@ io.on("connection", (socket) => {
       lastSeen: isAlreadyOnline ? "online" : new Date(),
     });
     io.emit("getOnlineUsers", onlineUsers);
-    console.log("last onlineUsers:");
   });
 
   // add message
